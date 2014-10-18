@@ -49,7 +49,7 @@ $(document).on('ready', function() {
 		  }
 		  
 		  $("#map i").remove();
-		  s.hide();
+		  s.html("Select Your Bus Route");
 		  
 		  var latitude = position.coords.latitude;
 		  var longitude = position.coords.longitude;

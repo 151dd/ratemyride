@@ -75,11 +75,28 @@ body {
 		background-color: @primary;
 		color: #fff;
 	}
-	.next-icon {
+	i {
+		left: 20px;
+		top: 14px;
 		position: absolute;
-		right: 9px;
-		top: 2px;
-		font-size: 40px;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 10%;
+		right: -10%;
+		top: 18px;
+		background: @primary;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 10%;
+		left: -10%;
+		top: 18px;
+		background: @primary;
 	}
 }
 
@@ -93,11 +110,6 @@ body {
 	&:hover {
 		background-color: #fff;
 		color: @primary;
-	}
-	i {
-		left: 20px;
-		top: 14px;
-		position: absolute;
 	}
 	&:after {
 		content: '';
@@ -131,6 +143,10 @@ body {
 	padding: 20px;
 	text-align: center;
 	width: 100%;
+	background-color: @primary;
+	color: #fff;
+	font-weight: 200;
+	margin-bottom: 0px;
 }
 
 #map {
@@ -218,9 +234,35 @@ body {
 	text-align: center;
 	float: left;
 	width: 100%;
+	position: relative;
+	overflow: hidden;
 	h3 {
 		font-weight: 100;
 		font-size: 34px;
+		z-index: 2;
+		position: relative;
+	}
+	&:before {
+		position: absolute;
+		left: -7px;
+		bottom: -47px;
+		color: rgba(0, 0, 0, 0.08);
+		font-size: 120px;
+		z-index: 1;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.qa-wrap {
+	&:nth-child(1) .question-wrap:before {
+		content: '1';
+	}
+	&:nth-child(2) .question-wrap:before {
+		content: '2';
+	}
+	&:nth-child(3) .question-wrap:before {
+		content: '3';
 	}
 }
 

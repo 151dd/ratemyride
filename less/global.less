@@ -1,0 +1,231 @@
+@import "elements.less";
+
+@primary: #7C9992;
+@secondary: #997C7C;
+@dark: #222;
+
+html {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+	color: #222;
+	background-color: #fcfcfc;
+	overflow-x: hidden;
+	&.home {
+		background-image: url('../img/bg2.jpg');
+		background-position: center;
+		background-size: cover;
+	}
+}
+
+.center-content-wrap {
+	text-align: center;
+	width: 100%;
+}
+
+.center-content {
+	padding: 10px;
+}
+
+.center-content-wrap h5 {
+	text-transform: uppercase;
+	margin-top: 20px;
+}
+
+.logo {
+	font-family: "Lato","Helvetica Neue",Helvetica,arial,sans-serif;
+	font-weight: 200;
+	text-transform: uppercase;
+	font-size: 70px;
+	margin-bottom: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px rgba(34, 34, 34, 0.26);
+	letter-spacing: 5px;
+	background-color: rgba(0, 0, 0, 0.64);
+	padding: 20px;
+	box-shadow: 2px 2px 3px rgba(34, 34, 34, 0.19);
+	border-bottom: 3px solid #fff;
+	border-top: 3px solid #fff;
+}
+
+.btn-splash {
+	margin: 5px 0px;
+}
+
+.btn {
+	border-width: 3px;
+	.rounded(40px);
+}
+
+.btn-custom {
+	width: 90%;
+	margin: 0px auto;
+	border-color: @primary;
+	color: @primary;
+	text-transform: uppercase;
+	background: none;
+	position: relative;
+	-webkit-transition: background .2s ease-in-out;
+	-o-transition: background .2s ease-in-out;
+	transition: background .2s ease-in-out;
+	&:hover {
+		background-color: @primary;
+		color: #fff;
+	}
+	.next-icon {
+		position: absolute;
+		right: 9px;
+		top: 2px;
+		font-size: 40px;
+	}
+}
+
+.home .btn-custom {
+	margin-bottom: 10px;
+	border-color: #fff;
+	color: #fff;
+	text-transform: uppercase;
+	background: @primary;
+	position: relative;
+	&:hover {
+		background-color: #fff;
+		color: @primary;
+	}
+	i {
+		left: 20px;
+		top: 14px;
+		position: absolute;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 10%;
+		right: -10%;
+		top: 18px;
+		background: #FFF;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 10%;
+		left: -10%;
+		top: 18px;
+		background: #FFF;
+	}
+}
+
+#findSubmit button {
+	margin-top: 20px;
+}
+
+.hidden-el {
+	display: none;
+}
+
+.status-wrapper {
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+#map {
+	width: 100%;
+	height: 300px;
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: 1px solid #DDD;
+	i {
+		font-size: 150px;
+		margin-top: 50px;
+		color: @primary;
+	}
+}
+
+.route-option, .answer-option {
+	color: #222;
+	font-size: 14px;
+	text-align: left;
+	padding: 10px;
+	border: 1px solid #DDD;
+	border-top: 0px;
+	position: relative;
+	cursor: pointer;
+	&:hover:after, &.selected:after {
+		background-color: @primary;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		right: 10px;
+		top: 12px;
+		width: 20px;
+		height: 20px;
+		.rounded(50%);
+		border: 3px solid @primary;
+		-webkit-transition: background .2s ease-in-out;
+		-o-transition: background .2s ease-in-out;
+		transition: background .2s ease-in-out;
+	}
+	span {
+		.gradient(@color:  @primary, @start:  @primary, @stop: lighten(@primary, 20));
+		color: #fff;
+		padding: 3px 6px;
+		.rounded(3px);
+		margin-right: 5px;
+	}
+	&:hover span {
+		.gradient(@color:  #B3C4C0, @start:  #B3C4C0, @stop: #B5C6C2);
+	}
+}
+
+.answer-option-bool {
+	width: 50%;
+	float: left;
+	&.negative {
+		&:after {
+			border: 3px solid @secondary;
+			-webkit-transition: background .2s ease-in-out;
+			-o-transition: background .2s ease-in-out;
+			transition: background .2s ease-in-out;
+		}
+		span {
+			.gradient(@color:  @secondary, @start:  @secondary, @stop: lighten(@secondary, 20));
+		}
+		&:hover span {
+			.gradient(@color:  #997C7C, @start:  #997C7C, @stop: #997C7C);
+		}
+		&:hover:after, &.selected:after {
+			background-color: @secondary;
+		}
+	}
+}
+
+.route-option:last-of-type {
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+}
+
+.question-wrap {
+	background-color: @primary;
+	padding: 20px;
+	color: #fff;
+	text-align: center;
+	float: left;
+	width: 100%;
+	h3 {
+		font-weight: 100;
+		font-size: 34px;
+	}
+}
+
+.answer-wrap {
+	width: 100%;
+	float: left;
+}
+

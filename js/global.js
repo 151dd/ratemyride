@@ -135,7 +135,33 @@ $(document).on('ready', function() {
 			input.val(dataVal);
 		}
 
-	})
+	});
+
+	//Handle question form submit
+
+	$.fn.serializeObject = function()
+	{
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function() {
+	        if (o[this.name] !== undefined) {
+	            if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	            }
+	            o[this.name].push(this.value || '');
+	        } else {
+	            o[this.name] = this.value || '';
+	        }
+	    });
+	    return o;
+	};
+
+	$(function() {
+	    $('#qaForm').submit(function() {
+	        console.log(JSON.stringify($('#qaForm').serializeObject()));
+	        return false;
+	    });
+	});
 
 
 

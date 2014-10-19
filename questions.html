@@ -26,41 +26,79 @@
 
   <body>
 
-  <div class="qa-wrap" data-question="a">
-    <div class="question-wrap">
-      <h3>Was your bus clean?</h3>
+  <form>
+
+    <div class="qa-wrap" data-question="clean">
+      <div class="question-wrap">
+        <h3>Was your bus clean?</h3>
+      </div>
+
+      <div class="answer-wrap">
+        <div class="answer-option answer-option-bool" data-answer="1">YES</div>
+        <div class="answer-option answer-option-bool negative" data-answer="0">NO</div>
+      </div>
+
+      <input type="hidden" name="clean-answer" id="cleanAnswer" class="hidden-answer">
     </div>
 
-    <div class="answer-wrap">
-      <div class="answer-option answer-option-bool" data-answer="0">YES</div>
-      <div class="answer-option answer-option-bool negative" data-answer="1">NO</div>
-    </div>
-  </div>
+    <div class="qa-wrap" data-question="time">
+      <div class="question-wrap">
+        <h3>Was your bus on time?</h3>
+      </div>
 
-  <div class="qa-wrap" data-question="a">
-    <div class="question-wrap">
-      <h3>Was your bus on time?</h3>
+      <div class="answer-wrap">
+        <div class="answer-option answer-option-bool" data-answer="1">YES</div>
+        <div class="answer-option answer-option-bool negative" data-answer="0">NO</div>
+      </div>
+
+      <input type="hidden" name="time-answer" id="timeAnswer" class="hidden-answer">
     </div>
 
-    <div class="answer-wrap">
-      <div class="answer-option answer-option-bool" data-answer="0">YES</div>
-      <div class="answer-option answer-option-bool negative" data-answer="1">NO</div>
-    </div>
-  </div>
+    <div class="qa-wrap" data-question="improve">
+      <div class="question-wrap">
+        <h3>Which areas of your journey could we have improved?</h3>
+      </div>
+      <div class="answer-wrap">
+        <div class="answer-option" data-answer="0">Cleanliness</div>
+        <div class="answer-option" data-answer="1">Anti-Social Behaviour</div>
+        <div class="answer-option" data-answer="2">Punctuality</div>
+        <div class="answer-option" data-answer="3">Price</div>
+        <div class="answer-option" data-answer="4">Space</div>
+        <div class="answer-option" data-answer="5">Time</div>
+      </div>
 
-  <div class="qa-wrap" data-question="a">
-    <div class="question-wrap">
-      <h3>Which areas of your journey could we have improved?</h3>
+      <input type="hidden" name="improve-answer[0]" class="hidden-answer" value="0">
+      <input type="hidden" name="improve-answer[1]" class="hidden-answer" value="0">
+      <input type="hidden" name="improve-answer[2]" class="hidden-answer" value="0">
+      <input type="hidden" name="improve-answer[3]" class="hidden-answer" value="0">
+      <input type="hidden" name="improve-answer[4]" class="hidden-answer" value="0">
+      <input type="hidden" name="improve-answer[5]" class="hidden-answer" value="0">
     </div>
-    <div class="answer-wrap">
-      <div class="answer-option" data-answer="1">Cleanliness</div>
-      <div class="answer-option" data-answer="2">Anti-Social Behaviour</div>
-      <div class="answer-option" data-answer="3">Punctuality</div>
-      <div class="answer-option" data-answer="4">Price</div>
-      <div class="answer-option" data-answer="5">Space</div>
-      <div class="answer-option" data-answer="6">Time</div>
+
+    <div class="qa-wrap qa-contact" data-question="a">
+      <div class="question-wrap">
+        <h3>Contact Details (Optional)</h3>
+      </div>
+
+      <div class="answer-wrap">
+        <div class="form-group">
+          <label for="email" class="sr-only">Email Address</label>
+          <input type="email" class="form-control input-lg" id="email" placeholder="Email Address" name="email">
+          <i class="fa fa-envelope"></i>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="sr-only">Phone Number</label>
+          <input type="number" class="form-control input-lg" id="phone" placeholder="Phone Number" name="phone">
+          <i class="fa fa-phone-square"></i>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="form-group">
+      <button type="submit" id="submitFeedback" class="btn btn-custom btn-lg btn-block">Submit Feedback <i class="fa fa-check-circle-o"></i></button>
+    </div>
+
+  </form>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

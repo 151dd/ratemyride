@@ -33,7 +33,7 @@
     </div>
 
 
-      <form id="findBus" role="form">
+      <form id="findBus" role="form" action="/questions.html" method="get">
         <div class="row">
           <div class="col-md-12 hidden-el" id="manBusNum">
             <div class="form-group">
@@ -46,14 +46,14 @@
             <div class="route-option" data-route-id="114B" data-direction="s"><span>114</span> Towards Erdington</div>
             <div class="route-option" data-route-id="115A" data-direction="n"><span>115</span> Towards Wolverhampton</div>
             <div class="route-option" data-route-id="115A" data-direction="s"><span>115</span> Towards Erdington</div>
-            <input type="hidden" id="busNumAutoID">
-            <input type="hidden" id="busNumAutoTime">
-            <input type="hidden" id="busNumAutoDirection">
-            <input type="hidden" id="busNumAutoStopID">
+            <input type="hidden" id="busNumAutoID" name="busNumAutoID">
+            <input type="hidden" id="busNumAutoTime" name="busNumAutoTime">
+            <input type="hidden" id="busNumAutoDirection" name="busNumAutoDirection">
+            <input type="hidden" id="busNumAutoStopID" name="busNumAutoStopID">
           </div>
           <div class="col-md-12 hidden-el" id="findSubmit">
             <div class="form-group">
-              <button type="button" class="btn btn-custom btn-lg btn-block">Start Feedback <i class="fa fa-check-circle-o"></i></button>
+              <button type="submit" class="btn btn-custom btn-lg btn-block">Start Feedback <i class="fa fa-check-circle-o"></i></button>
             </div>
           </div>
         </row>

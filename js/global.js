@@ -27,7 +27,7 @@ $(document).on('ready', function() {
 	//Change and set the route option
 	$('body').on('click', '.route-option', function() {
 		var routeID = $(this).data('route-id');
-		var routeDirection = $(this).data('route-direction');
+		var routeDirection = $(this).data('direction');
 
 		$('#busNumAutoID').val(routeID);
 		$('#busNumAutoDirection').val(routeDirection);
@@ -111,4 +111,33 @@ $(document).on('ready', function() {
 
 		$('#manBusNum').show();
 	}
+
+	//Handle questions
+	$('.answer-option').on('click', function() {
+
+		//Is it a boolean answer?
+		if($(this).hasClass('answer-option-bool')) {
+			$(this).parent().parent().find('.answer-option').removeClass('selected');
+			$(this).addClass('selected');
+			var input = $(this).parent().parent().find('.hidden-answer');
+			var dataVal = $(this).data('answer');
+			input.val(dataVal);
+		} else {
+			if($(this).hasClass('selected')) {
+				$(this).removeClass('selected');
+				var dataVal = "0"
+			} else {
+				$(this).addClass('selected');
+				var dataVal = "1"
+			}
+			var index = $(this).index();
+			var input = $(this).parent().parent().find('.hidden-answer').eq(index);
+			input.val(dataVal);
+		}
+
+	})
+
+
+
+
 });

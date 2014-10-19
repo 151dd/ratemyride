@@ -1,4 +1,15 @@
 $(document).on('ready', function() {
+
+	//Sort out links in ios
+	var a=document.getElementsByTagName("a");
+	for(var i=0;i<a.length;i++) {
+	    if(!a[i].onclick && a[i].getAttribute("target") != "_blank") {
+	        a[i].onclick=function() {
+	                window.location=this.getAttribute("href");
+	                return false; 
+	        }
+	    }
+	}
 	
 	//Center splash content
 	function vertPos() {
@@ -166,10 +177,21 @@ $(document).on('ready', function() {
 
 	$(function() {
 	    $('#qaForm').submit(function() {
-	        console.log(JSON.stringify($('#qaForm').serializeObject()));
+
+	        var data = JSON.stringify($('#qaForm').serializeObject());
+
+	        $('.overlay').fadeIn(200);
+	        $('#submitFeedback').html("Sending...");
+
+	        setTimeout(function(){swal({   title: "Sent!",   text: "Thank you for providing us with your feedback",   type: "success",   showCancelButton: false,   confirmButtonColor: "#7C9992",   confirmButtonText: "OK",   closeOnConfirm: false }, function(){window.location.href = '/';});}, 3000);
+
+
+
 	        return false;
 	    });
 	});
+
+
 
 
 

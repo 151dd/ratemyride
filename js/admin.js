@@ -1,5 +1,17 @@
 $(document).on("ready", function() {
 
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('1c6e0d39fa0205cfe767');
+    var channel = pusher.subscribe('test_channel');
+    channel.bind('my_event', function(data) {
+      alert(data.message);
+    });
+
     //Bus on time?
 
     var timeData = [

@@ -78,9 +78,9 @@ $(document).on('ready', function() {
 		      title: "You are here! (at least within a "+position.coords.accuracy+" meter radius)"
 		  });
 
-		  //Gimme dat dataz Alex
-		  var latitude = position.coords.latitude;
-		  var longitude = position.coords.longitude;
+
+		  $('#busNumAutoLat').val(latitude);
+		  $('#busNumAutoLon').val(longitude);
 
 		  //Show the bus number dropdown
 		  $('#autoBusNum, #findSubmit').show();
@@ -111,6 +111,14 @@ $(document).on('ready', function() {
 
 		$('#manBusNum').show();
 	}
+
+	//Fill in hidden question data from find form
+	$('#busNumAutoID').val(getUrlParameter('busNumAutoID'));
+	$('#busNumAutoDirection').val(getUrlParameter('busNumAutoDirection'));
+	$('#busNumAutoTime').val(getUrlParameter('busNumAutoTime'));
+	$('#busNumAutoStopID').val(getUrlParameter('busNumAutoStopID'));
+	$('#busNumAutoLat').val(getUrlParameter('busNumAutoLat'));
+	$('#busNumAutoLon').val(getUrlParameter('busNumAutoLon'));
 
 	//Handle questions
 	$('.answer-option').on('click', function() {

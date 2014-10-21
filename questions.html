@@ -31,12 +31,11 @@
 
   <form id="qaForm">
 
-    <input type="hidden" id="busNumAutoID" name="busNumAutoID">
-    <input type="hidden" id="busNumAutoTime" name="busNumAutoTime">
-    <input type="hidden" id="busNumAutoDirection" name="busNumAutoDirection">
-    <input type="hidden" id="busNumAutoStopID" name="busNumAutoStopID">
-    <input type="hidden" id="busNumAutoLat" name="busNumAutoLat">
-    <input type="hidden" id="busNumAutoLon" name="busNumAutoLon">
+    <input type="hidden" id="routeId" name="busNumAutoID">
+    <input type="hidden" id="original_time" name="original_time">
+    <input type="hidden" id="stop_id" name="stop_id">
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
 
     <div class="qa-wrap" data-question="clean">
       <div class="question-wrap">
@@ -70,7 +69,7 @@
       </div>
       <div class="answer-wrap">
         <div class="answer-option" data-answer="0">Cleanliness</div>
-        <div class="answer-option" data-answer="1">Anti-Social Behaviour</div>
+        <div class="answer-option" data-answer="1">Anti-Social Beha...</div>
         <div class="answer-option" data-answer="2">Punctuality</div>
         <div class="answer-option" data-answer="3">Price</div>
         <div class="answer-option" data-answer="4">Space</div>
@@ -85,9 +84,22 @@
       <input type="hidden" name="improve-answer[5]" class="hidden-answer" value="0">
     </div>
 
-    <div class="qa-wrap qa-contact" data-question="a">
+    <div class="qa-wrap qa-details">
       <div class="question-wrap">
-        <h3>Contact Details (Optional)</h3>
+        <h3>Add Futher Details <i class="fa fa-caret-left"></i></h3>
+      </div>
+
+      <div class="answer-wrap">
+        <div class="form-group">
+          <label for="details" class="sr-only">Email Address</label>
+          <textarea class="form-control input-lg" id="details" placeholder="Enter text..." name="comment"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-wrap qa-contact">
+      <div class="question-wrap">
+        <h3>Add Contact Details <i class="fa fa-caret-left"></i></h3>
       </div>
 
       <div class="answer-wrap">
@@ -105,7 +117,7 @@
     </div>
 
     <div class="form-group">
-      <button type="submit" id="submitFeedback" class="btn btn-custom btn-lg btn-block">Submit Feedback <i class="fa fa-check-circle-o"></i></button>
+      <button type="submit" id="submitFeedback" class="btn btn-custom btn-lg btn-block ">Submit Feedback <i class="fa fa-check-circle-o"></i></button>
     </div>
 
   </form>

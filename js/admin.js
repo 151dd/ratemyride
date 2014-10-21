@@ -1,17 +1,5 @@
 $(document).on("ready", function() {
 
-    Pusher.log = function(message) {
-      if (window.console && window.console.log) {
-        window.console.log(message);
-      }
-    };
-
-    var pusher = new Pusher('1c6e0d39fa0205cfe767');
-    var channel = pusher.subscribe('test_channel');
-    channel.bind('my_event', function(data) {
-      alert(data.message);
-    });
-
     //Bus on time?
 
     var timeData = [
@@ -31,10 +19,7 @@ $(document).on("ready", function() {
 
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.maintainAspectRatio = false;
-    // Get context with jQuery - using jQuery's .get() method.
     var ctx = $("#time-graph").get(0).getContext("2d");
-    //var ctx = document.getElementById("time-graph").getContext("2d");
-    // This will get the first returned node in the jQuery collection.
     var timeChart = new Chart(ctx).Doughnut(timeData, {
 
     });
@@ -58,10 +43,7 @@ $(document).on("ready", function() {
 
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.maintainAspectRatio = false;
-    // Get context with jQuery - using jQuery's .get() method.
     var ctx = $("#clean-graph").get(0).getContext("2d");
-    //var ctx = document.getElementById("time-graph").getContext("2d");
-    // This will get the first returned node in the jQuery collection.
     var cleanChart = new Chart(ctx).Doughnut(cleanData, {
 
     });
@@ -86,11 +68,36 @@ $(document).on("ready", function() {
 
     Chart.defaults.global.responsive = true;
     Chart.defaults.global.maintainAspectRatio = false;
-    // Get context with jQuery - using jQuery's .get() method.
     var ctx = $("#improvement-graph").get(0).getContext("2d");
-    //var ctx = document.getElementById("time-graph").getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var cleanChart = new Chart(ctx).Radar(improvementData, {
+    var improvementChart = new Chart(ctx).Radar(improvementData, {
+
+    });
+
+     //Demo for updating chart when feedback submitted
+
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('1c6e0d39fa0205cfe767');
+    var channel = pusher.subscribe('rateride');
+    channel.bind('new_feedback', function(data) {
+
+        var loc_lat = data.busNumAutoLat;
+        var loc_long = data.busNumAutoLong;
+
+        cleanChart.segments[1].value = 10;
+        cleanChart.update();
+
+        timeChart.segments[1].value = 30;
+        timeChart.update();
+
+        improvementChart.datasets[0].points[2].value = 3;
+        improvementChart.datasets[0].points[3].value = 5;
+        improvementChart.datasets[0].points[4].value = 2;
+        improvementChart.update();
 
     });
 

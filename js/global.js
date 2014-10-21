@@ -1,6 +1,6 @@
 $(document).on('ready', function() {
 
-	//Sort out links in ios
+	//Stops links behaving like links on iOS app mode
 	var a=document.getElementsByTagName("a");
 	for(var i=0;i<a.length;i++) {
 	    if(!a[i].onclick && a[i].getAttribute("target") != "_blank") {
@@ -18,9 +18,10 @@ $(document).on('ready', function() {
 		$('.vertical-align').css('margin-top', (parentHeight - childHeight) / 2);
 	}
 
+	//Do on load
 	vertPos();
 
-	//URL params
+	//Handle URL params
 	function getUrlParameter(sParam)
 	{
 	    var sPageURL = window.location.search.substring(1);
@@ -45,6 +46,8 @@ $(document).on('ready', function() {
 
 		$('.route-option').removeClass('selected');
 		$(this).addClass('selected');
+
+		$('#findBus').submit();
 
 	})
 
@@ -93,6 +96,24 @@ $(document).on('ready', function() {
 		  $('#busNumAutoLat').val(latitude);
 		  $('#busNumAutoLon').val(longitude);
 
+		  //Update list of available bus numbers
+
+		  //Delete static list
+		  $('#autoBusNum .route-option').remove();
+
+		  var routesUrl = "/routes/search?lat=" + latitude + "&long=" + longitude;
+		  $.get(routesUrl, function(data) {
+			  	data = $.parseJSON(data);
+			  	console.log(data);
+				$.each(data, function(i, item) {
+				    console.log(item);
+				    var routeListHtml = '<div class="route-option" data-route-id="' + item.route_id + '" data-direction="' + item.route_direction + '"><span>' + item.route_number + '</span> - Towards '+ item.route_direction + '</div>';
+				    $('#autoBusNum').prepend(routeListHtml);
+				    $('#busNumAutoTime').val(item.time);
+				    $('#busNumAutoStopID').val(item.stop_id);
+				});
+		  });
+
 		  //Show the bus number dropdown
 		  $('#autoBusNum, #findSubmit').show();
 		  vertPos();
@@ -124,12 +145,12 @@ $(document).on('ready', function() {
 	}
 
 	//Fill in hidden question data from find form
-	$('#busNumAutoID').val(getUrlParameter('busNumAutoID'));
-	$('#busNumAutoDirection').val(getUrlParameter('busNumAutoDirection'));
-	$('#busNumAutoTime').val(getUrlParameter('busNumAutoTime'));
-	$('#busNumAutoStopID').val(getUrlParameter('busNumAutoStopID'));
-	$('#busNumAutoLat').val(getUrlParameter('busNumAutoLat'));
-	$('#busNumAutoLon').val(getUrlParameter('busNumAutoLon'));
+	$('#routeId').val(getUrlParameter('busNumAutoID'));
+	$('#direction').val(getUrlParameter('busNumAutoDirection'));
+	$('#original_time').val(getUrlParameter('busNumAutoTime'));
+	$('#stop_id').val(getUrlParameter('busNumAutoStopID'));
+	$('#latitude').val(getUrlParameter('busNumAutoLat'));
+	$('#longitude').val(getUrlParameter('busNumAutoLon'));
 
 	//Handle questions
 	$('.answer-option').on('click', function() {
@@ -176,24 +197,50 @@ $(document).on('ready', function() {
 	};
 
 	$(function() {
-	    $('#qaForm').submit(function() {
+	    $('#qaForm').submit(function(e) {
 
-	        var data = JSON.stringify($('#qaForm').serializeObject());
+	    	e.preventDefault();
+
+	        var data = $(this).serialize();
+	        var route_id = $("#routeId").val();
+	        console.log(data);
 
 	        $('.overlay').fadeIn(200);
 	        $('#submitFeedback').html("Sending...");
 
+	        //Send to pusher
+	        $.post( "/send.php", data)
+			.success(function(data) {
+			    console.log( "Data Loaded: " + data );
+			});
+
+			//Send to DB
+			var feedbackUrl = "/feedback/route/" + route_id;
+
+			$.post(feedbackUrl, data)
+			.success(function(data) {
+			    console.log( "Data Loaded: " + data );
+			});
+
+			//Put this on callback rather than setTimeout when endpoint is plugged in
 	        setTimeout(function(){swal({   title: "Sent!",   text: "Thank you for providing us with your feedback",   type: "success",   showCancelButton: false,   confirmButtonColor: "#7C9992",   confirmButtonText: "OK",   closeOnConfirm: false }, function(){window.location.href = '/';});}, 3000);
-
-
 
 	        return false;
 	    });
 	});
 
+	//Show contact form
+	$('.qa-contact .question-wrap').on('click', function() {
+		$('.qa-contact .answer-wrap').slideToggle(200);
+		$(this).find('i').toggleClass('fa-caret-left');
+		$(this).find('i').toggleClass('fa-caret-down');
+	});
 
-
-
+	$('.qa-details .question-wrap').on('click', function() {
+		$('.qa-details .answer-wrap').slideToggle(200);
+		$(this).find('i').toggleClass('fa-caret-left');
+		$(this).find('i').toggleClass('fa-caret-down');
+	});
 
 
 });
